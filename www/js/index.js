@@ -20,7 +20,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
-        $mobile.changePage("all_pokemon.html");
+        //$mobile.changePage("all_pokemon.html");
     },
     // Bind Event Listeners
     //
@@ -34,23 +34,14 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
+        var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
+        var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
+        $("#menu-buttons").css("top", toppos).css("left",leftpos);
     },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-    }
 };
 
-$(document).ready(function(){
-    var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
-    var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
-    $("#menu-buttons").css("top", toppos).css("left",leftpos);
-});
+//$(document).ready(function(){
+//    var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
+//    var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
+//    $("#menu-buttons").css("top", toppos).css("left",leftpos);
+//});
