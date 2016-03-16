@@ -37,6 +37,8 @@ var app = {
         var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
         var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
         $("#menu-buttons").css("top", toppos).css("left",leftpos);
+
+        currentLocation.initialize();
     },
 };
 
