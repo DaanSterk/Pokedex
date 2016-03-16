@@ -40,7 +40,9 @@
     <div data-role="page">
 
         <div data-role="header" role="banner" data-position="fixed">
-            <div data-role="navbar" data-iconpos="top">
+            <h1>Pokedex</h1>
+            <a class="ui-btn-right" href="#" data-icon="gear">Settings</a>
+            <div data-role="navbar">
                 <ul>
                     <li><a id="nav-all-pokemon" href="index.html" class="ui-btn-active ui-state-persist" data-icon="search"  data-transition="none">All Pokemon</a></li>
                     <li><a id="nav-my-pokemon" href="views/my_pokemon.html" data-icon="star" data-transition="none">My Pokemon</a></li>
@@ -48,15 +50,14 @@
             </div><!-- /navbar -->
         </div>
 
-        <!-- <div data-role="content"> -->
-        <ul id="list_all_pokemon" data-role="listview" data-inset="true">
-            
-        </ul>
-        <!-- </div> -->
+        <!--<div data-role="content">-->
+            <ul id="list_all_pokemon" data-role="listview" data-inset="true">
 
-        
+            </ul>
+        <!--</div>-->
 
     </div>
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/location.js"></script>

@@ -3,6 +3,8 @@
 var callbacks;
 var callbacksLeft;
 
+var savedList;
+
 // Shows all pokemon in the 'ALL POKEMON' list.
 function showAllPokemon(limit, offset) {
 	callbacks = limit;
@@ -25,7 +27,7 @@ function showAllPokemon(limit, offset) {
 
 		var item = document.createElement("li");
 		var anchor = document.createElement("a");
-			// $(anchor).attr("src", currPokemon.url);
+			 $(anchor).attr("href", "views/detail.html").attr("data-transition", "none");
 		var image = document.createElement("img");
 		var h2 = document.createElement("h2");
 			$(h2).text(currPokemon.name);
@@ -48,14 +50,14 @@ function showAllPokemon(limit, offset) {
 	  		url: url,
 	  		success: function(data) {
 	  			$(img).attr("src", data.sprites.front_default);
-	  			var abilities = "";
+	  			var moves = "";
 
 	  			var divider = ""
-	  			for (var i = 0; i < data.abilities.length; i++) {
-	  				abilities = abilities + divider + data.abilities[i].ability.name;
+	  			for (var i = 0; i < data.moves.length; i++) {
+	  				moves = moves + divider + data.moves[i].move.name;
 	  				divider = ", ";
 	  			}
-	  			$(p).text(abilities);
+	  			$(p).text(moves);
 
 	  			// If all callbacks have returned data:
 				if (isFullyLoaded()) {
@@ -87,10 +89,11 @@ function showAllPokemon(limit, offset) {
 	function hideLoader() {
 		$.mobile.loading("hide");
 		$("#list_all_pokemon").show();
+		savedList = $("#list_all_pokemon");
 	}
 
 $(document).ready(function(){
-	showAllPokemon(10, 200);
+	showAllPokemon(10, 150);
 });
 
 
