@@ -1,8 +1,15 @@
 // Only call functions that are not indented.
 
+var callbacks;
+var callbacksLeft;
 
 // Shows all pokemon in the 'ALL POKEMON' list.
 function showAllPokemon(limit, offset) {
+	callbacks = limit;
+	callbacksLeft = limit;
+
+	showLoader();
+	
 	$.ajax({
   		url: "http://pokeapi.co/api/v2/pokemon/?limit=" + limit + "&offset=" + offset,
   		success: function(data) {
@@ -30,8 +37,9 @@ function showAllPokemon(limit, offset) {
 		item.appendChild(anchor);
 
 		$("#list_all_pokemon")[0].appendChild(item);
+		$("#list_all_pokemon").listview("refresh");
 
-		setImgAndPTags(data.results[num].url, image, p)
+		setImgAndPTags(data.results[num].url, image, p);
 	}
 
 	// Subfunction - do not call directly. Gets single pokemon data and updates listview item on callback.
@@ -48,9 +56,37 @@ function showAllPokemon(limit, offset) {
 	  				divider = ", ";
 	  			}
 	  			$(p).text(abilities);
-	  			$("#list_all_pokemon").listview("refresh");
+
+	  			// If all callbacks have returned data:
+				if (isFullyLoaded()) {
+					hideLoader();
+				}
+				else {
+					showLoader();
+				}
 	  		}
 		});
+	}
+
+	function isFullyLoaded() {
+		callbacksLeft--;
+		return callbacksLeft == 0;
+	}
+
+	function showLoader() {
+		$("#list_all_pokemon").hide();
+
+	    $.mobile.loading( "show", {
+	            text: "Loading pokemon " + (callbacks - callbacksLeft) + "/" + callbacks,
+	            textVisible: true,
+	            theme: $.mobile.loader.prototype.options.theme,
+	            textonly: false
+	    });
+	}
+
+	function hideLoader() {
+		$.mobile.loading("hide");
+		$("#list_all_pokemon").show();
 	}
 
 $(document).ready(function(){
