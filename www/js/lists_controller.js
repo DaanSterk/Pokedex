@@ -8,6 +8,8 @@ function showAllPokemon(limit, offset) {
 	callbacks = limit;
 	callbacksLeft = limit;
 
+	showLoader();
+	
 	$.ajax({
   		url: "http://pokeapi.co/api/v2/pokemon/?limit=" + limit + "&offset=" + offset,
   		success: function(data) {
@@ -16,8 +18,6 @@ function showAllPokemon(limit, offset) {
   			}
   		}
 	});
-
-	showLoader();
 }
 	// Subfunction - do not call directly. Adds a single pokemon to the 'ALL POKEMON' list.
 	function addSinglePokemonToAllList(data, num) {
