@@ -38,7 +38,12 @@ var app = {
         var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
         $("#menu-buttons").css("top", toppos).css("left",leftpos);
 
-        currentLocation.initialize();
-        currentDirection.getCurrentDirection();
+        app.initialize();
     },
+
+    initialize: function(){
+        currentLocation.initialize();
+        //currentDirection.getCurrentDirection();
+        settings.initialize();
+    }
 };
