@@ -1,3 +1,11 @@
 #textarea-position{
-    height: 500px !important;
+    height: 300px !important;
+}
+
+.title{
+    margin-left: 40px !important;
+}
+
+#back-btn{
+    min-width: 20px;
 }

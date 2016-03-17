@@ -40,6 +40,10 @@
     <div data-role="page">
 
         <div data-role="header" role="banner" data-position="fixed">
+            <div class="title-bar">
+                <h2>Pokedex</h2>
+                <a href="views/settings.html" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+            </div>
             <div data-role="navbar" data-iconpos="top">
                 <ul>
                     <li><a id="nav-all-pokemon" href="index.html" class="ui-btn-active ui-state-persist" data-icon="search"  data-transition="none">All Pokemon</a></li>
@@ -60,6 +64,7 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/location.js"></script>
+        <script type="text/javascript" src="js/direction.js"></script>
         <script type="text/javascript" src="js/lists_controller.js"></script>
         <script type="text/javascript">
             app.initialize();
