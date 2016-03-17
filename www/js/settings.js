@@ -17,9 +17,9 @@ var settings = {
     },
 
     addListeners: function(){
-        alert($('#switch-awesome-settings').val());
-        alert($('#switch-show-compass').val());
-        alert($('#switch-show-gps').val());
+        console.log($('#switch-awesome-settings').val());
+        console.log($('#switch-show-compass').val());
+        console.log($('#switch-show-gps').val());
         $('#switch-awesome-settings').on("tap", function(){
             localStorage.setItem("awesomesettings", $('#switch-awesome-settings').val());
         });
