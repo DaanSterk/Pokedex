@@ -46,8 +46,8 @@ body {
 }
 
 #menu-buttons {
-    position:absolute;   
-    background:orange;
+    position: absolute;
+    background-color: orange;
 }
 
 /* Landscape layout (with min-width) */

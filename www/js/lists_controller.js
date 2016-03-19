@@ -2,24 +2,29 @@
 
 var callbacks;
 var callbacksLeft;
+var currPage;
 
 var savedList;
 
 // Shows all pokemon in the 'ALL POKEMON' list.
-function showAllPokemon(limit, offset) {
-	callbacks = limit;
-	callbacksLeft = limit;
+function showAllPokemon(limit, page) {
+		currPage = page;
+		callbacks = limit;
+		callbacksLeft = limit;
 
-	showListLoader();
-	
-	$.ajax({
-  		url: "http://pokeapi.co/api/v2/pokemon/?limit=" + limit + "&offset=" + offset,
-  		success: function(data) {
-  			for (var i = 0; i < data.results.length; i++) {
-  				addSinglePokemonToAllList(data, i);
-  			}
-  		}
-	});
+		$("#list_all_pokemon").empty();
+		updateButtonText();
+		disableButtons();
+		showListLoader();
+
+		$.ajax({
+			url: "http://pokeapi.co/api/v2/pokemon/?limit=" + limit + "&offset=" + (page * limit),
+			success: function (data) {
+				for (var i = 0; i < data.results.length; i++) {
+					addSinglePokemonToAllList(data, i);
+				}
+			}
+		});
 }
 
 	// Subfunction - do not call directly. Adds a single pokemon to the 'ALL POKEMON' list.
@@ -67,6 +72,7 @@ function showAllPokemon(limit, offset) {
 	  			// If all callbacks have returned data:
 				if (isFullyLoaded()) {
 					hideLoader();
+					enableButtons();
 				}
 				else {
 					showListLoader();
@@ -75,10 +81,37 @@ function showAllPokemon(limit, offset) {
 		});
 	}
 
-function isFullyLoaded() {
-	callbacksLeft--;
-	return callbacksLeft == 0;
-}
+	function isFullyLoaded() {
+		callbacksLeft--;
+		return callbacksLeft == 0;
+	}
+
+	function disableButtons() {
+		$("#btn-next").addClass("ui-disabled");
+		$("#btn-prev").addClass("ui-disabled");
+	}
+
+	function enableButtons() {
+		$("#btn-next").removeClass("ui-disabled");
+		if (currPage != 0) {
+			$("#btn-prev").removeClass("ui-disabled");
+		}
+	}
+
+	function updateButtonText() {
+		var btnNextText = "Next (" + (currPage + 2) + ")";
+		$("#btn-next").text(btnNextText);
+
+		var btnPrevText;
+		var btnPrev = $("#btn-prev");
+		if (currPage != 0) {
+			btnPrevText = "Previous (" + (currPage) + ")";
+			btnPrev.text(btnPrevText);
+		}
+		else {
+			btnPrev.text("Previous");
+		}
+	}
 
 function showListLoader() {
 	$("#list_all_pokemon").hide();
@@ -107,7 +140,7 @@ function hideLoader() {
 }
 
 function showDetail(name) {
-	$.mobile.changePage("../views/detail.html");
+	$.mobile.changePage("#page_detail");
 	$.ajax({
 		url: "http://pokeapi.co/api/v2/pokemon/" + name,
 		success: function(data) {
@@ -122,14 +155,31 @@ function showDetail(name) {
 	});
 }
 
-$(document).ready(function(){
-	showAllPokemon(1, 150);
+
+// Everything that needs to happen when a page is loaded.
+$("#page_all_pokemon").on( "pageshow", function( event ) {
+	$(".nav-all-pokemon").addClass("ui-btn-active");
+	if (savedList == null) {
+		showAllPokemon(10, 0);
+	}
+	else {
+		$("#list_all_pokemon")[0] = savedList;
+	}
+
+	$("#btn-next").on("tap", function() {
+		$("#btn-next").text(currPage + 1);
+		showAllPokemon(10, currPage + 1);
+	});
+	$("#btn-prev").on("tap", function() {
+		$("#btn-prev").text(currPage - 1);
+		showAllPokemon(10, currPage - 1);
+	});
 });
 
-$(document).ajaxStart(function() {
+$("#page_my_pokemon").on( "pageshow", function( event ) {
 
 });
 
-$(document).ajaxStop(function() {
-
+$("#page_detail").on( "pageshow", function( event ) {
+	showLoader();
 });
