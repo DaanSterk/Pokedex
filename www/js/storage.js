@@ -5,9 +5,12 @@ var storage = {
     getMyPokemon: function() {
         var pokemonArray = new Array();
         var i = 0;
-        for (var pokemonId in localStorage) {
-            pokemonArray[i] = JSON.parse(this.store.getItem(pokemonId));
-            i++;
+        for (var item in localStorage) {
+            var parsedItem = JSON.parse(this.store.getItem(item));
+            if (parsedItem.id != undefined) {
+                pokemonArray[i] = parsedItem;
+                i++;
+            }
         }
         return pokemonArray;
     },
