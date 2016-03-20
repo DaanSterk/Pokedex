@@ -165,9 +165,29 @@ function showDetail(name) {
 	});
 }
 
+function showMyPokemon() {
+	//storage.saveMyPokemon(
+	//	{
+	//		id: 0,
+	//		name: 'Weezing',
+	//		abilities: ['jump', 'attack'],
+	//		sprite: 'test.png'
+	//	}
+	//);
+	//storage.saveMyPokemon(
+	//	{
+	//		id: 1,
+	//		name: 'Pikachu',
+	//		abilities: ['jump', 'attack'],
+	//		sprite: 'test2.png'
+	//	}
+	//);
+	console.log(storage.getMyPokemon());
+}
 
 // Everything that needs to happen when a page is loaded.
 $("#page_all_pokemon").on( "pageshow", function( event ) {
+	showMyPokemon();
 	$(".nav-all-pokemon").addClass("ui-btn-active");
 	if (savedList == null) {
 		if (!isLoading) {
