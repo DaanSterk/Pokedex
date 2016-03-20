@@ -1,16 +1,21 @@
 // Only call functions that are not indented.
 
+var recordsPerPage = 10;
+
 var callbacks;
 var callbacksLeft;
 var currPage;
 
 var savedList;
 
+var isLoading = false;
+
 // Shows all pokemon in the 'ALL POKEMON' list.
 function showAllPokemon(limit, page) {
 		currPage = page;
 		callbacks = limit;
 		callbacksLeft = limit;
+		isLoading = true;
 
 		$("#list_all_pokemon").empty();
 		updateButtonText();
@@ -73,9 +78,12 @@ function showAllPokemon(limit, page) {
 				if (isFullyLoaded()) {
 					hideLoader();
 					enableButtons();
+					isLoading = false;
 				}
 				else {
-					showListLoader();
+					if ($.mobile.activePage.attr("id") == "page_all_pokemon") {
+						showListLoader();
+					}
 				}
 	  		}
 		});
@@ -136,7 +144,9 @@ function showLoader() {
 function hideLoader() {
 	$.mobile.loading("hide");
 	$("#list_all_pokemon").show();
-	savedList = $("#list_all_pokemon");
+	if (!isLoading) {
+		savedList = $("#list_all_pokemon");
+	}
 }
 
 function showDetail(name) {
@@ -160,7 +170,12 @@ function showDetail(name) {
 $("#page_all_pokemon").on( "pageshow", function( event ) {
 	$(".nav-all-pokemon").addClass("ui-btn-active");
 	if (savedList == null) {
-		showAllPokemon(10, 0);
+		if (!isLoading) {
+			showAllPokemon(recordsPerPage, 0);
+		}
+		else {
+			showListLoader();
+		}
 	}
 	else {
 		$("#list_all_pokemon")[0] = savedList;
@@ -168,16 +183,18 @@ $("#page_all_pokemon").on( "pageshow", function( event ) {
 
 	$("#btn-next").on("tap", function() {
 		$("#btn-next").text(currPage + 1);
-		showAllPokemon(10, currPage + 1);
+		showAllPokemon(recordsPerPage, currPage + 1);
 	});
 	$("#btn-prev").on("tap", function() {
 		$("#btn-prev").text(currPage - 1);
-		showAllPokemon(10, currPage - 1);
+		showAllPokemon(recordsPerPage, currPage - 1);
 	});
 });
 
 $("#page_my_pokemon").on( "pageshow", function( event ) {
-
+	hideLoader();
+	$(".nav-my-pokemon").addClass("ui-btn-active");
+	$(".nav-all-pokemon").removeClass("ui-btn-active");
 });
 
 $("#page_detail").on( "pageshow", function( event ) {
