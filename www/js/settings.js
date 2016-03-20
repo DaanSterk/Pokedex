@@ -21,18 +21,19 @@ var settings = {
         console.log($('#switch-show-compass'));
         console.log($('#switch-show-gps'));
 
-
-        $('#switch-awesome-settings').on("tap", function(){
-            console.log("switch settings");
-            localStorage.setItem("awesomesettings", $('#switch-awesome-settings').val());
-        });
-        $('#switch-show-compass').change(function(){
-            console.log("switch compass");
-            localStorage.setItem("showcompass", $('#switch-show-compass').val());
-        });
-        $('#switch-show-gps').on("change", function(){
-            console.log("switch gps");
-            localStorage.setItem("showgps", $('#switch-show-gps').val());
+        $('#settings-page').on("pageshow", function () {
+            $('#switch-awesome-settings').on("tap", function(){
+                console.log("switch settings");
+                localStorage.setItem("awesomesettings", $('#switch-awesome-settings').val());
+            });
+            $('#switch-show-compass').change(function(){
+                console.log("switch compass");
+                localStorage.setItem("showcompass", $('#switch-show-compass').val());
+            });
+            $('#switch-show-gps').on("change", function(){
+                console.log("switch gps");
+                localStorage.setItem("showgps", $('#switch-show-gps').val());
+            });
         });
     }
 };
