@@ -17,17 +17,21 @@ var settings = {
     },
 
     addListeners: function(){
-        console.log($('#switch-awesome-settings').val());
-        console.log($('#switch-show-compass').val());
-        console.log($('#switch-show-gps').val());
+        console.log($('#switch-awesome-settings'));
+        console.log($('#switch-show-compass'));
+        console.log($('#switch-show-gps'));
+
+
         $('#switch-awesome-settings').on("tap", function(){
+            console.log("switch settings");
             localStorage.setItem("awesomesettings", $('#switch-awesome-settings').val());
         });
         $('#switch-show-compass').change(function(){
+            console.log("switch compass");
             localStorage.setItem("showcompass", $('#switch-show-compass').val());
         });
         $('#switch-show-gps').on("change", function(){
-            alert("Werkt niet. Of toch wel?");
+            console.log("switch gps");
             localStorage.setItem("showgps", $('#switch-show-gps').val());
         });
     }
