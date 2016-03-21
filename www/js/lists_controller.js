@@ -13,10 +13,12 @@ var isLoading = false;
 // Shows all pokemon in the 'ALL POKEMON' list.
 function showAllPokemon(limit, page) {
 		currPage = page;
+		console.log(currPage);
 		callbacks = limit;
 		callbacksLeft = limit;
 		isLoading = true;
 
+		savedList = null;
 		$("#list_all_pokemon").empty();
 		updateButtonText();
 		disableButtons();
@@ -155,11 +157,15 @@ function showDetail(name) {
 		url: "http://pokeapi.co/api/v2/pokemon/" + name,
 		success: function(data) {
 			data = JSON.parse(data); // Somehow returned a string instead of JSON object.
+
 			$(".main-title").text(data.name);
 			$("#poke_img1").attr("src", data.sprites.front_default);
 			$("#poke_img2").attr("src", data.sprites.back_default);
 			$("#poke_img3").attr("src", data.sprites.front_shiny);
 			$("#poke_img4").attr("src", data.sprites.back_shiny);
+
+			
+
 			hideLoader();
 		}
 	});
@@ -186,8 +192,8 @@ function showMyPokemon() {
 }
 
 // Everything that needs to happen when a page is loaded.
+var events_all_pokemon = false;
 $("#page_all_pokemon").on( "pageshow", function( event ) {
-	showMyPokemon();
 	$(".nav-all-pokemon").addClass("ui-btn-active");
 	if (savedList == null) {
 		if (!isLoading) {
@@ -201,17 +207,26 @@ $("#page_all_pokemon").on( "pageshow", function( event ) {
 		$("#list_all_pokemon")[0] = savedList;
 	}
 
-	$("#btn-next").on("tap", function() {
-		$("#btn-next").text(currPage + 1);
-		showAllPokemon(recordsPerPage, currPage + 1);
-	});
-	$("#btn-prev").on("tap", function() {
-		$("#btn-prev").text(currPage - 1);
-		showAllPokemon(recordsPerPage, currPage - 1);
-	});
+	
+	if (!events_all_pokemon) {
+		$("#btn-next").on("tap", function() {
+			$("#btn-next").text(currPage + 1);
+			showAllPokemon(recordsPerPage, currPage + 1);
+		});
+
+
+		$("#btn-prev").on("tap", function() {
+			$("#btn-prev").text(currPage - 1);
+			showAllPokemon(recordsPerPage, currPage - 1);
+		});
+		events_all_pokemon = true;
+	}
+	
+	
 });
 
 $("#page_my_pokemon").on( "pageshow", function( event ) {
+	showMyPokemon();
 	hideLoader();
 	$(".nav-my-pokemon").addClass("ui-btn-active");
 	$(".nav-all-pokemon").removeClass("ui-btn-active");
