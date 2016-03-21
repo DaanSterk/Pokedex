@@ -65,6 +65,8 @@ function showAllPokemon(limit, page) {
 		$.ajax({
 	  		url: url,
 	  		success: function(data) {
+	  			// storage.saveMyPokemon(data);
+
 	  			$(img).attr("src", data.sprites.front_default);
 	  			var moves = "";
 
@@ -193,6 +195,17 @@ function showDetail(name) {
 				list[0].appendChild(listItem);
 			}
 
+
+			var button = $("#b_mapview");
+			if (storage.ownThisPokemon(data)) {
+				button.text("You own this pokemon");
+				button.addClass("ui-disabled");
+			}
+			else {
+				button.text("View on map");
+				button.removeClass("ui-disabled");
+			}
+
 			$("#poke_content").show();
 			hideLoader();
 		}
@@ -200,23 +213,46 @@ function showDetail(name) {
 }
 
 function showMyPokemon() {
-	//storage.saveMyPokemon(
-	//	{
-	//		id: 0,
-	//		name: 'Weezing',
-	//		abilities: ['jump', 'attack'],
-	//		sprite: 'test.png'
-	//	}
-	//);
-	//storage.saveMyPokemon(
-	//	{
-	//		id: 1,
-	//		name: 'Pikachu',
-	//		abilities: ['jump', 'attack'],
-	//		sprite: 'test2.png'
-	//	}
-	//);
-	console.log(storage.getMyPokemon());
+
+	$("#list_my_pokemon").empty();
+
+	var myPokemon = storage.getMyPokemon();
+
+	for (var i = 0; i < myPokemon.length; i++) {
+
+		var currPokemon = myPokemon[i];
+
+		var item = document.createElement("li");
+		var anchor = document.createElement("a");
+			 $(anchor).attr("data-transition", "none");
+		var image = document.createElement("img");
+		var h2 = document.createElement("h2");
+			$(h2).text(currPokemon.name);
+		var p = document.createElement("p");
+
+		anchor.appendChild(image);
+		anchor.appendChild(h2);
+		anchor.appendChild(p);
+		$(anchor).click(function() {
+			showDetail(currPokemon.name);
+		});
+
+		item.appendChild(anchor);
+
+		$("#list_my_pokemon")[0].appendChild(item);
+		$("#list_my_pokemon").listview("refresh");
+
+		$(image).attr("src", currPokemon.sprites.front_default);
+		var moves = "";
+
+		var divider = ""
+		for (var j = 0; j < currPokemon.moves.length; j++) {
+			moves = moves + divider + currPokemon.moves[j].move.name;
+			divider = ", ";
+		}
+		$(p).text(moves);
+	}
+
 }
 
 // Everything that needs to happen when a page is loaded.
