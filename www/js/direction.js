@@ -28,7 +28,7 @@ var currentDirection = {
         if(navigator.compass){
             var options = {frequency: 3000};
             currentDirection.watchId = navigator.compass.watchHeading(
-                currentDirection.showLocation, currentDirection.errorHandler, options);
+                currentDirection.showDirection, currentDirection.errorHandler, options);
         }
         else{
             alert("Sorry, the device does not support compass!");
