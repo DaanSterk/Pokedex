@@ -9,3 +9,8 @@
 #back-btn{
     min-width: 20px;
 }
+
+/*FlipSwitch styling for text*/
+.ui-flipswitch .ui-btn.ui-flipswitch-on {
+    text-indent: -3.12em;
+}
