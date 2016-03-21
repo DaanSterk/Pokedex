@@ -108,3 +108,7 @@ body {
 .main-title {
     text-transform: capitalize;
 }
+
+a h2 {
+    text-transform: capitalize;
+}

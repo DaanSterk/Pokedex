@@ -222,7 +222,10 @@ function showMyPokemon() {
 // Everything that needs to happen when a page is loaded.
 var events_all_pokemon = false;
 $("#page_all_pokemon").on( "pageshow", function( event ) {
+
+	$(".main-title").text("Pokedex");
 	$(".nav-all-pokemon").addClass("ui-btn-active");
+
 	if (savedList == null) {
 		if (!isLoading) {
 			showAllPokemon(recordsPerPage, 0);
