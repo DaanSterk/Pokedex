@@ -3,6 +3,17 @@
     text-transform: capitalize;
 }
 
+#poke_content ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+#poke_content h4 {
+	margin: 3px 0px;
+	padding: 0px;
+}
+
 #img_container {
     margin: 0 auto;
 }

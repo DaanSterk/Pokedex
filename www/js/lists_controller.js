@@ -13,7 +13,6 @@ var isLoading = false;
 // Shows all pokemon in the 'ALL POKEMON' list.
 function showAllPokemon(limit, page) {
 		currPage = page;
-		console.log(currPage);
 		callbacks = limit;
 		callbacksLeft = limit;
 		isLoading = true;
@@ -153,6 +152,9 @@ function hideLoader() {
 
 function showDetail(name) {
 	$.mobile.changePage("#page_detail");
+
+	$("#poke_content").hide();
+
 	$.ajax({
 		url: "http://pokeapi.co/api/v2/pokemon/" + name,
 		success: function(data) {
@@ -164,8 +166,34 @@ function showDetail(name) {
 			$("#poke_img3").attr("src", data.sprites.front_shiny);
 			$("#poke_img4").attr("src", data.sprites.back_shiny);
 
-			
+			var list = $("#poke_abilities");
+			list.empty();
+			for (var i = 0; i < data.abilities.length; i++) {
+				var listItem = document.createElement("li");
+				var textNode = document.createTextNode(data.abilities[i].ability.name);
+				listItem.appendChild(textNode);
+				list[0].appendChild(listItem);
+			}
 
+			var list = $("#poke_types");
+			list.empty();
+			for (var i = 0; i < data.types.length; i++) {
+				var listItem = document.createElement("li");
+				var textNode = document.createTextNode(data.types[i].type.name);
+				listItem.appendChild(textNode);
+				list[0].appendChild(listItem);
+			}
+
+			var list = $("#poke_forms");
+			list.empty();
+			for (var i = 0; i < data.forms.length; i++) {
+				var listItem = document.createElement("li");
+				var textNode = document.createTextNode(data.forms[i].name);
+				listItem.appendChild(textNode);
+				list[0].appendChild(listItem);
+			}
+
+			$("#poke_content").show();
 			hideLoader();
 		}
 	});
