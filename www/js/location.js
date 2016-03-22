@@ -9,10 +9,13 @@ var currentLocation = {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
         var coordinates = "Latitude: " + latitude + " Longitude: " + longitude + "\n";
-        if($("#textarea-position")) {
-            $("#textarea-position").val(function (_, val) {
+        var textArea = $("#textarea-position");
+        if(textArea) {
+            textArea.val(function (_, val) {
                 return val + coordinates
             });
+            //Ensure that the textarea is always scrolled to the bottom.
+            textArea.scrollTop(textArea.height());
         }
     },
 

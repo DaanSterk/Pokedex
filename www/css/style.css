@@ -6,6 +6,7 @@
 
 #textarea-position{
     height: 300px !important;
+    overflow: auto;
 }
 
 /*FlipSwitch styling for text*/
