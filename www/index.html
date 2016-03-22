@@ -31,40 +31,42 @@
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
         <title>Pokedex</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
     </head>
     <body>
+        <div id="home" data-role="page">
 
+            <div data-role="header" role="banner" data-position="fixed">
+                <div class="title-bar">
+                    <h2>Pokedex</h2>
+                    <a href="views/settings.html" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+                </div>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a id="nav-all-pokemon" href="index.html" class="ui-btn-active ui-state-persist" data-icon="search"  data-transition="none">All Pokemon</a></li>
+                        <li><a id="nav-my-pokemon" href="views/my_pokemon.html" data-icon="star" data-transition="none">My Pokemon</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div>
 
-    <div data-role="page">
+            <!-- <div data-role="content"> -->
+                <ul id="list_all_pokemon" data-role="listview" data-inset="true">
 
-        <div data-role="header" role="banner" data-position="fixed">
-            <div data-role="navbar" data-iconpos="top">
-                <ul>
-                    <li><a id="nav-all-pokemon" href="index.html" class="ui-btn-active ui-state-persist" data-icon="search"  data-transition="none">All Pokemon</a></li>
-                    <li><a id="nav-my-pokemon" href="views/my_pokemon.html" data-icon="star" data-transition="none">My Pokemon</a></li>
                 </ul>
-            </div><!-- /navbar -->
+            <!-- </div> -->
+
         </div>
 
-        <!-- <div data-role="content"> -->
-            <ul id="list_all_pokemon" data-role="listview" data-inset="true">
-                
-            </ul>
-        <!-- </div> -->
-
-        
-
-    </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/location.js"></script>
+        <script type="text/javascript" src="js/direction.js"></script>
+        <script type="text/javascript" src="js/settings.js"></script>
         <script type="text/javascript" src="js/lists_controller.js"></script>
         <script type="text/javascript">
             app.initialize();
-
         </script>
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+        <script type="text/javascript" src="js/plugin/JQueryRotate.js"></script>
     </body>
 </html>

@@ -9,8 +9,11 @@ var currentLocation = {
         var latitude = position.coords.latitude;
         var longitude = position.coords.longitude;
         var coordinates = "Latitude: " + latitude + " Longitude: " + longitude + "\n";
-        if($("#textarea-position"))
-            $("#textarea-position").val(function(_, val){return val + coordinates})
+        if($("#textarea-position")) {
+            $("#textarea-position").val(function (_, val) {
+                return val + coordinates
+            });
+        }
     },
 
     errorHandler: function(err){
@@ -25,12 +28,12 @@ var currentLocation = {
     getLocationUpdate: function(){
         if(navigator.geolocation){
             //var options = {maximumAge: 3000, timeout:30000};
-            var options = {enableHighAccuracy: true}
+            var options = {enableHighAccuracy: true};
             currentLocation.watchId = navigator.geolocation.watchPosition(
                 currentLocation.showLocation, currentLocation.errorHandler, options);
         }
         else{
-            alert("Sorry, browser does not support geolocation!");
+            alert("Sorry, the device does not support geolocation!");
         }
     }
 

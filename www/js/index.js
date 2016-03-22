@@ -39,5 +39,7 @@ var app = {
         $("#menu-buttons").css("top", toppos).css("left",leftpos);
 
         currentLocation.initialize();
-    },
+        currentDirection.initialize();
+        settings.initialize();
+    }
 };
