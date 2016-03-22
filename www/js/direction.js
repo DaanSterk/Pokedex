@@ -1,5 +1,6 @@
 var currentDirection = {
     watchId: null,
+    prevHeading: 0,
 
     initialize: function(){
         currentDirection.getCurrentDirection();
@@ -7,10 +8,19 @@ var currentDirection = {
 
     //On Succes
     showDirection: function(direction){
-        var heading = "Degrees: " + direction.magneticHeading;
-        if($("#compass-degrees")) {
-            $("#compass-degrees").val(heading);
+        var heading = direction.magneticHeading;
+        if($("#compass-degrees-label")) {
+            $("#compass-degrees-label").text("Compass degrees: " + heading);
         }
+        if($("#compass-needle-img")) {
+            $('#compass-needle-img').rotate({
+                duration: 500,
+                angle: currentDirection.prevHeading,
+                animateTo: heading
+            });
+        }
+
+        currentDirection.prevHeading = direction.magneticHeading;
     },
 
     //On Error
@@ -33,6 +43,7 @@ var currentDirection = {
         else{
             //TODO: Uncomment rule below when app goes live.
             //alert("Sorry, the device does not support compass!");
+            console.log("Sorry, the device does not support compass!");
         }
     },
 

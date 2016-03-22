@@ -1,31 +1,28 @@
 <div id="settings-page" data-role="page">
-
-    <div data-role="header" role="banner" data-position="fixed">
-        <div class="title-bar">
-            <a id="back-btn" href="#" class="ui-btn-left ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-top ui-icon-back"></a>
-            <h2 class="title">Settings</h2>
+    <div data-role="header" role="banner" data-position="fixed" data-add-back-btn="true">
+        <h2 class="title">Settings</h2>
+    </div>
+    <div id="settings-wrapper">
+        <div id="settings-form-wrapper">
+            <form>
+                <label for="switch-awesome-settings">This is an awesome setting page.</label>
+                <input data-on-text="True" data-off-text="False" type="checkbox" data-role="flipswitch" name="switch-awesome-settings" id="switch-awesome-settings">
+                <label for="switch-show-compass">Show compass</label>
+                <input data-on-text="Show" data-off-text="Hide" type="checkbox" data-role="flipswitch" name="switch-show-compass" id="switch-show-compass">
+                <label for="switch-show-gps">Show gps</label>
+                <input data-on-text="Show" data-off-text="Hide" type="checkbox" data-role="flipswitch" name="switch-show-compass" id="switch-show-gps">
+            </form>
         </div>
-    </div>
 
-    <div>
-        <a href="#home">home</a>
-        <form>
-            <label for="switch-awesome-settings">This is an awesome setting page.</label>
-            <input data-on-text="True" data-off-text="False" type="checkbox" data-role="flipswitch" name="switch-awesome-settings" id="switch-awesome-settings">
-            <label for="switch-show-compass">Show compass</label>
-            <input data-on-text="Show" data-off-text="Hide" type="checkbox" data-role="flipswitch" name="switch-show-compass" id="switch-show-compass">
-            <label for="switch-show-gps">Show gps</label>
-            <input data-on-text="Show" data-off-text="Hide" type="checkbox" data-role="flipswitch" name="switch-show-compass" id="switch-show-gps">
-        </form>
-    </div>
-
-    <div id="compass-wrapper" style="display: none;">
-        <label for="compass-degrees">Compass Degrees:</label>
-        <input type="text" name="compass-degrees" id="compass-degrees" readonly>
-    </div>
-    <div id="gps-wrapper" style="display: none;">
-        <label for="textarea-position">Current GPS Coördinates</label>
-        <textarea name="log" id="textarea-position" readonly></textarea>
+        <div id="compass-wrapper">
+            <label id="compass-degrees-label">Compass degrees:</label>
+            <img id="compass-img" src="../img/compass.png">
+            <img id="compass-needle-img" src="../img/compass-needle.png">
+        </div>
+        <div id="gps-wrapper">
+            <label for="textarea-position">Current GPS Coördinates</label>
+            <textarea name="log" id="textarea-position" readonly></textarea>
+        </div>
     </div>
 </div>
 

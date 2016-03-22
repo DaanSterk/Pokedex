@@ -1,16 +1,36 @@
+/**********************************************/
+/*Settings Page*/
+#settings-wrapper{
+    margin: 0px 15px 10px 15px;
+}
+
 #textarea-position{
     height: 300px !important;
-}
-
-.title{
-    margin-left: 40px !important;
-}
-
-#back-btn{
-    min-width: 20px;
 }
 
 /*FlipSwitch styling for text*/
 .ui-flipswitch .ui-btn.ui-flipswitch-on {
     text-indent: -3.12em;
 }
+
+#compass-wrapper{
+    display: none;
+    position: relative; left: 0; top: 0;
+}
+
+#compass-img{
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+#compass-needle-img{
+    position: absolute;
+    top: 27px;
+    left: 0px;
+}
+
+#gps-wrapper{
+    display: none;
+}
+/**********************************************/
