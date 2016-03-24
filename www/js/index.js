@@ -34,9 +34,11 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
-        var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
-        $("#menu-buttons").css("top", toppos).css("left",leftpos);
+        // var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
+        // var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
+        // $("#menu-buttons").css("top", toppos).css("left",leftpos);
+
+        // window.open = cordova.InAppBrowser.open;
 
         currentLocation.initialize();
         currentDirection.initialize();
