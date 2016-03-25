@@ -39,9 +39,15 @@ var app = {
         // $("#menu-buttons").css("top", toppos).css("left",leftpos);
 
         // window.open = cordova.InAppBrowser.open;
-
+        app.indexPageListeners();
         currentLocation.initialize();
         currentDirection.initialize();
         settings.initialize();
+    },
+    
+    indexPageListeners: function () {
+        $(document).on("tap", "#pokedex-webpage", function () {
+            window.open("http://www.pokemon.com/nl/pokedex/", "_system");
+        });
     }
 };
