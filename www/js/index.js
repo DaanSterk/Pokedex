@@ -34,12 +34,25 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
-        var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
-        $("#menu-buttons").css("top", toppos).css("left",leftpos);
+        // var toppos=($(window).height()/2) - ($("#menu-buttons").height()/2);
+        // var leftpos=($(window).width()/2) - ($("#menu-buttons").width()/2);
+        // $("#menu-buttons").css("top", toppos).css("left",leftpos);
 
+        // window.open = cordova.InAppBrowser.open;
+        app.indexPageListeners();
         currentLocation.initialize();
         currentDirection.initialize();
         settings.initialize();
+    },
+    
+    indexPageListeners: function () {
+        $(document).on("tap", "#pokedex-webpage", function () {
+            window.open("http://www.pokemon.com/nl/pokedex/", "_system");
+        });
+
+        $(document).on("tap", "#pokedex-facebook", function () {
+            //window.open("https://www.facebook.com/1399971336935582", "_system");
+            window.open('fb://page/1399971336935582', '_system');
+        });
     }
 };
