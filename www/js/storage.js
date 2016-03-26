@@ -6,10 +6,12 @@ var storage = {
         var pokemonArray = new Array();
         var i = 0;
         for (var item in localStorage) {
-            var parsedItem = JSON.parse(this.store.getItem(item));
-            if (parsedItem.name != undefined) {
-                pokemonArray[i] = parsedItem;
-                i++;
+            if(item) {
+                var parsedItem = JSON.parse(this.store.getItem(item));
+                if (parsedItem.name) {
+                    pokemonArray[i] = parsedItem;
+                    i++;
+                }
             }
         }
         return pokemonArray;
