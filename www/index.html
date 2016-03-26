@@ -30,40 +30,95 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/detail.css" />
         <title>Pokedex</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
     </head>
     <body>
-        <div id="home" data-role="page">
+
+        <div id="page_all_pokemon" data-role="page">
 
             <div data-role="header" role="banner" data-position="fixed">
-                <div class="title-bar">
-                    <h2>Pokedex</h2>
-                    <a href="views/settings.html" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
-                </div>
-                <div data-role="navbar" data-iconpos="top">
+                <h1 class="main-title">Pokedex</h1>
+                <a href="views/settings.html" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+                <div data-role="navbar">
                     <ul>
-                        <li><a id="nav-all-pokemon" href="index.html" class="ui-btn-active ui-state-persist" data-icon="search"  data-transition="none">All Pokemon</a></li>
-                        <li><a id="nav-my-pokemon" href="views/my_pokemon.html" data-icon="star" data-transition="none">My Pokemon</a></li>
+                        <li><a class="nav-all-pokemon" href="" class="ui-btn-active ui-state-persist" data-icon="search"  data-transition="none">All Pokemon</a></li>
+                        <li><a class="nav-my-pokemon" href="#page_my_pokemon" data-icon="star" data-transition="none">My Pokemon</a></li>
                     </ul>
                 </div><!-- /navbar -->
             </div>
-            <a href="views/catch_pokemon.html">Catch Pokemon</a>
-            <!-- <div data-role="content"> -->
-                <ul id="list_all_pokemon" data-role="listview" data-inset="true">
 
-                </ul>
-            <!-- </div> -->
-            <div data-role="footer">
-                <a id="pokedex-webpage">Pokedex Webpage</a>
-                <a id="pokedex-facebook">Pokedex Facebook</a>
+            <ul id="list_all_pokemon" data-role="listview" data-inset="true">
+
+            </ul>
+
+            <div data-role="footer" data-position="fixed">
+                <button id="btn-prev" data-role="button" data-icon="arrow-l" role="button">Previous</button>
+                <button id="btn-next" class="ui-btn-right" data-role="button" data-icon="arrow-r" role="button">Next</button>
             </div>
+
+        </div>
+
+        <div id="page_my_pokemon" data-role="page">
+
+            <div data-role="header" role="banner" data-position="fixed">
+                <h1>Pokedex</h1>
+                <a href="views/settings.html" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a class="nav-all-pokemon" href="#page_all_pokemon" data-icon="search"  data-transition="none">All Pokemon</a></li>
+                        <li><a class="nav-my-pokemon" href="#" data-icon="star" data-transition="none" class="ui-btn-active ui-state-persist">My Pokemon</a></li>
+                    </ul>
+                </div><!-- /navbar -->
+            </div>
+
+            <ul id="list_my_pokemon" data-role="listview" data-inset="true">
+
+            </ul>
+            <!--<textarea name="log" id="textarea-position"></textarea>-->
+            <!--<button onclick="currentLocation.getLocationUpdate()">Current Location</button>-->
+
+        </div>
+
+        <div id="page_detail" data-role="page">
+
+            <div data-role="header" role="banner" data-position="fixed">
+                <a href="#page_all_pokemon" data-icon="back">Back</a>
+                <h1 class="main-title">Pokedex</h1>
+                <a href="views/settings.html" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+            </div>
+
+            <div data-role="content" id="poke_content">
+                <div class="ui-body ui-body-a ui-corner-all" id="img_container">
+                    <img id="poke_img1" src="">
+                    <img id="poke_img2" src="">
+                    <img id="poke_img3" src="">
+                    <img id="poke_img4" src="">
+                </div>
+                <div class="ui-body ui-body-a ui-corner-all">
+                    <h4>Abilities</h4>
+                    <ul id="poke_abilities"></ul>
+                </div>
+                <div class="ui-body ui-body-a ui-corner-all">
+                    <h4>Types</h4>
+                    <ul id="poke_types"></ul>
+                </div>
+                <div class="ui-body ui-body-a ui-corner-all">
+                    <h4>Forms</h4>
+                    <ul id="poke_forms"></ul>
+                </div>
+                <button id="b_mapview" class="ui-btn ui-btn-b">View on map</button>
+            </div>
+
+
         </div>
         <script type="text/javascript" src="js/plugin/JQueryRotate.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/location.js"></script>
+        <script type="text/javascript" src="js/storage.js"></script>
         <script type="text/javascript" src="js/direction.js"></script>
         <script type="text/javascript" src="js/settings.js"></script>
         <script type="text/javascript" src="js/lists_controller.js"></script>
