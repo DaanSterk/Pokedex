@@ -207,6 +207,10 @@ function showDetail(name) {
 			else {
 				button.text("View on map");
 				button.removeClass("ui-disabled");
+				button.unbind("tap");
+				button.on("tap", function() {
+					viewOnMap(data);
+				});
 			}
 
 			$("#poke_content").show();
@@ -215,6 +219,23 @@ function showDetail(name) {
 		}
 	});
 }
+
+	function viewOnMap(pokemon) {
+		var pokeCoords = [
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+			"58.897096,-77.036545?q=58.897096,-77.036545",
+		]
+
+		window.open("geo:" + pokeCoords[pokemon.id - 11], '_system');
+	}
 
 function showMyPokemon() {
 
