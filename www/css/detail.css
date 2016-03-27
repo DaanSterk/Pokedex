@@ -1,4 +1,5 @@
 #poke_content {
+    display: none;
     text-align: center;
     text-transform: capitalize;
 }
