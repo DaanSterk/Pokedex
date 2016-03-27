@@ -43,6 +43,9 @@ var app = {
         currentLocation.initialize();
         currentDirection.initialize();
         settings.initialize();
+        
+        pokemonDetail.initialize();
+        myPokemon.initialize();
     },
     
     indexPageListeners: function () {
@@ -56,12 +59,12 @@ var app = {
         });
 
         $(document).on('swiperight', function () {
-            if(currPage - 1 >= 0)
-                showAllPokemon(recordsPerPage, currPage - 1);
+            if(pokemonList.currPage - 1 >= 0)
+                pokemonList.showAllPokemon(pokemonList.recordsPerPage, pokemonList.currPage - 1);
         });
 
         $(document).on('swipeleft', function () {
-            showAllPokemon(recordsPerPage, currPage + 1);
+            pokemonList.showAllPokemon(pokemonList.recordsPerPage, pokemonList.currPage + 1);
         });
     }
 };

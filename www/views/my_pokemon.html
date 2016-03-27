@@ -1,12 +1,20 @@
-    <div data-role="page">
+<div id="page_my_pokemon" data-role="page">
 
-        <div data-role="header" role="banner" data-position="fixed">
-            <div data-role="navbar" data-iconpos="top">
-                <ul>
-                    <li><a id="nav-all-pokemon" href="../index.html" data-icon="search" data-transition="none">All Pokemon</a></li>
-                    <li><a id="nav-my-pokemon" href="my_pokemon.html" class="ui-btn-active ui-state-persist" data-icon="star" data-transition="none">My Pokemon</a></li>
-                </ul>
-            </div><!-- /navbar -->
-        </div>
+    <div data-role="header" role="banner" data-position="fixed">
+        <h1>Pokedex</h1>
+        <a href="views/settings.html" class="ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-right ui-icon-gear">Options</a>
+        <div data-role="navbar" data-iconpos="top">
+            <ul>
+                <li><a class="nav-all-pokemon" href="#page_all_pokemon" data-icon="search"  data-transition="none">All Pokemon</a></li>
+                <li><a class="nav-my-pokemon" href="#" data-icon="star" data-transition="none" class="ui-btn-active ui-state-persist">My Pokemon</a></li>
+            </ul>
+        </div><!-- /navbar -->
     </div>
 
+    <ul id="list_my_pokemon" data-role="listview" data-inset="true">
+
+    </ul>
+    <!--<textarea name="log" id="textarea-position"></textarea>-->
+    <!--<button onclick="currentLocation.getLocationUpdate()">Current Location</button>-->
+
+</div>
