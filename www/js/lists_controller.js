@@ -308,3 +308,7 @@ $("#page_detail").on( "pageshow", function( event ) {
 		showLoader();
 	}
 });
+
+$(document).on("swiperight", "#page_my_pokemon", function () {
+	window.history.back();
+});

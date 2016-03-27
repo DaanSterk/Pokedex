@@ -54,5 +54,14 @@ var app = {
             //window.open("https://www.facebook.com/1399971336935582", "_system");
             window.open('fb://page/1399971336935582', '_system');
         });
+
+        $(document).on('swiperight', function () {
+            if(currPage - 1 >= 0)
+                showAllPokemon(recordsPerPage, currPage - 1);
+        });
+
+        $(document).on('swipeleft', function () {
+            showAllPokemon(recordsPerPage, currPage + 1);
+        });
     }
 };
