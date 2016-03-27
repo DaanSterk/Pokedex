@@ -53,7 +53,7 @@ var pokemonList = {
 		anchor.appendChild(h2);
 		anchor.appendChild(p);
 		$(anchor).click(function() {
-			pokemonDetail.showDetail(data.results[num].name);
+			pokemonDetail.showDetail(data.results[num].name, "views/detail_pokemon.html");
 		});
 
 		item.appendChild(anchor);
@@ -199,11 +199,11 @@ var pokemonDetail = {
 		pokemonDetail.addListeners();
 	},
 
-	showDetail: function(name) {
+	showDetail: function(name, path) {
 		pokemonDetail.detailIsLoading = true;
 
 		//$.mobile.changePage("#page_detail");
-		$.mobile.changePage("views/detail_pokemon.html");
+		$.mobile.changePage(path);
 
 		$("#poke_content").hide();
 
@@ -320,7 +320,7 @@ var myPokemon = {
 			anchor.appendChild(h2);
 			anchor.appendChild(p);
 			$(anchor).click(function() {
-				pokemonDetail.showDetail(currPokemon.name);
+				pokemonDetail.showDetail(currPokemon.name, "detail_pokemon.html");
 			});
 
 			item.appendChild(anchor);
