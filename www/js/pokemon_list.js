@@ -160,7 +160,7 @@ var pokemonList = {
 		// Everything that needs to happen when a page is loaded.
 		$(document).on( "pageshow", "#page_all_pokemon", function( event ) {
 			$(".main-title").text("Pokedex");
-			$(".nav-all-pokemon").addClass("ui-btn-active");
+			//$(".nav-all-pokemon").addClass("ui-btn-active");
 
 			if (pokemonList.savedList == null) {
 				if (!pokemonList.isLoading) {
@@ -173,8 +173,7 @@ var pokemonList = {
 			else {
 				$("#list_all_pokemon")[0] = pokemonList.savedList;
 			}
-
-
+			
 			if (!pokemonList.events_all_pokemon) {
 				$(document).on("tap", "#btn-next", function() {
 					$("#btn-next").text(pokemonList.currPage + 1);

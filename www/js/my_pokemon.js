@@ -49,8 +49,8 @@ var myPokemon = {
         $(document).on("pageshow", "#page_my_pokemon", function( event ) {
             myPokemon.showMyPokemon();
             pokemonList.hideLoader();
-            $(".nav-my-pokemon").addClass("ui-btn-active");
-            $(".nav-all-pokemon").removeClass("ui-btn-active");
+            //$(".nav-my-pokemon").addClass("ui-btn-active");
+            //$(".nav-all-pokemon").removeClass("ui-btn-active");
         });
 
         $(document).on("swiperight", "#page_my_pokemon", function () {

@@ -46,7 +46,6 @@ var app = {
         
         pokemonDetail.initialize();
         myPokemon.initialize();
-        catchpokemon.initialize();
     },
     
     indexPageListeners: function () {
