@@ -6,7 +6,7 @@ var storage = {
         var pokemonArray = new Array();
         var i = 0;
         for (var item in localStorage) {
-            if(item) {
+            if(item && item != "debug") {
                 var parsedItem = JSON.parse(this.store.getItem(item));
                 if (parsedItem.name) {
                     pokemonArray[i] = parsedItem;
