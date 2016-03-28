@@ -90,6 +90,7 @@ var pokemonDetail = {
     },
 
     viewOnMap: function(pokemon) {
+
         var pokeCoords = [
             "58.897096,-77.036545?q=58.897096,-77.036545",
             "58.897096,-77.036545?q=58.897096,-77.036545",
@@ -102,8 +103,7 @@ var pokemonDetail = {
             "58.897096,-77.036545?q=58.897096,-77.036545",
             "58.897096,-77.036545?q=58.897096,-77.036545"
         ];
-        //window.open("geo:58.897096,-77.036545?q=58.897096,-77.036545", '_system');
-        window.open("geo:" + pokeCoords[pokemon.id - 11], '_system');
+        window.open("geo:" + pokeCoords[pokemon.id - 1], '_system');
     },
 
     addListeners: function () {
