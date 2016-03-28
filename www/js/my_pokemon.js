@@ -9,9 +9,11 @@ var myPokemon = {
 
         var myPokemonStorage = storage.getMyPokemon();
 
+        var currPokemon = null;
+
         for (var i = 0; i < myPokemonStorage.length; i++) {
 
-            var currPokemon = myPokemonStorage[i];
+            currPokemon = myPokemonStorage[i];
 
             var item = document.createElement("li");
             var anchor = document.createElement("a");
@@ -25,7 +27,7 @@ var myPokemon = {
             anchor.appendChild(h2);
             anchor.appendChild(p);
             $(anchor).click(function() {
-                pokemonDetail.showDetail(currPokemon.name, "detail_pokemon.html");
+                pokemonDetail.showDetail($(this).find("h2").text(), "detail_pokemon.html");
             });
 
             item.appendChild(anchor);

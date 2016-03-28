@@ -53,7 +53,7 @@ var pokemonList = {
 		anchor.appendChild(h2);
 		anchor.appendChild(p);
 		$(anchor).click(function() {
-			pokemonDetail.showDetail(data.results[num].name, "views/detail_pokemon.html");
+			pokemonDetail.showDetail(currPokemon.name, "views/detail_pokemon.html");
 		});
 
 		item.appendChild(anchor);
@@ -69,7 +69,7 @@ var pokemonList = {
 		$.ajax({
 			url: url,
 			success: function(data) {
-				// storage.saveMyPokemon(data);
+				 //storage.saveMyPokemon(data);
 
 				$(img).attr("src", data.sprites.front_default);
 				var moves = "";
