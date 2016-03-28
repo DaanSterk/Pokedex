@@ -158,7 +158,7 @@ var pokemonList = {
 
 	addListeners: function(){
 		// Everything that needs to happen when a page is loaded.
-		$(document).on( "pageshow", "#page_all_pokemon", function( event ) {
+		$(document).on( "pageinit", "#page_all_pokemon", function( event ) {
 			$(".main-title").text("Pokedex");
 			//$(".nav-all-pokemon").addClass("ui-btn-active");
 
