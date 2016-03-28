@@ -49,15 +49,6 @@ var app = {
     },
     
     indexPageListeners: function () {
-        $(document).on("tap", "#pokedex-webpage", function () {
-            window.open("http://www.pokemon.com/nl/pokedex/", "_system");
-        });
-
-        $(document).on("tap", "#pokedex-facebook", function () {
-            //window.open("https://www.facebook.com/1399971336935582", "_system");
-            window.open('fb://page/1399971336935582', '_system');
-        });
-
         $(document).on('swiperight', function () {
             if(pokemonList.currPage - 1 >= 0)
                 pokemonList.showAllPokemon(pokemonList.recordsPerPage, pokemonList.currPage - 1);
