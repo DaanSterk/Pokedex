@@ -43,7 +43,7 @@ var app = {
         currentLocation.initialize();
         currentDirection.initialize();
         settings.initialize();
-        
+
         pokemonDetail.initialize();
         myPokemon.initialize();
     },

@@ -11,12 +11,15 @@ var pokemonDetail = {
         //$.mobile.changePage("#page_detail");
         $.mobile.changePage(path);
 
-        $("#poke_content").hide();
+        //$("#poke_content").hide();
 
         $.ajax({
             url: "http://pokeapi.co/api/v2/pokemon/" + name,
             success: function(data) {
-                data = JSON.parse(data); // Somehow returned a string instead of JSON object.
+
+                if(typeof data != 'object') {
+                    data = JSON.parse(data); // Somehow returned a string instead of JSON object.
+                }
 
                 $(".main-title").text(data.name);
                 $("#poke_img1").attr("src", data.sprites.front_default);
@@ -51,7 +54,6 @@ var pokemonDetail = {
                     list[0].appendChild(listItem);
                 }
 
-
                 var button = $("#b_mapview");
                 if (storage.ownThisPokemon(data)) {
                     button.text("You own this pokemon");
@@ -67,10 +69,24 @@ var pokemonDetail = {
                 }
 
                 $("#poke_content").show();
-                pokemonList.hideLoader();
+                pokemonDetail.hideLoader();
                 pokemonDetail.detailIsLoading = false;
             }
         });
+    },
+
+    showLoader: function() {
+        $.mobile.loading("show", {
+            text: "Loading pokemon",
+            textVisible: true,
+            theme: $.mobile.loader.prototype.options.theme,
+            textonly: false
+        });
+    },
+
+    hideLoader: function() {
+        $.mobile.loading("hide");
+        $("#poke_content").show();
     },
 
     viewOnMap: function(pokemon) {
@@ -86,14 +102,14 @@ var pokemonDetail = {
             "58.897096,-77.036545?q=58.897096,-77.036545",
             "58.897096,-77.036545?q=58.897096,-77.036545"
         ];
-
+        //window.open("geo:58.897096,-77.036545?q=58.897096,-77.036545", '_system');
         window.open("geo:" + pokeCoords[pokemon.id - 11], '_system');
     },
 
     addListeners: function () {
         $(document).on( "pageshow", "#page_detail", function( event ) {
             if (pokemonDetail.detailIsLoading) {
-                pokemonList.showLoader();
+                pokemonDetail.showLoader();
             }
         });
     }
