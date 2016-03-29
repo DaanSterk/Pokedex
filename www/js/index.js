@@ -50,12 +50,13 @@ var app = {
     
     indexPageListeners: function () {
         $(document).on('swiperight', function () {
-            if(pokemonList.currPage - 1 >= 0)
+            if(pokemonList.currPage - 1 >= 0 && !pokemonList.isLoading)
                 pokemonList.showAllPokemon(pokemonList.recordsPerPage, pokemonList.currPage - 1);
         });
 
         $(document).on('swipeleft', function () {
-            pokemonList.showAllPokemon(pokemonList.recordsPerPage, pokemonList.currPage + 1);
+            if(pokemonList.currPage - 1 >= 0 && !pokemonList.isLoading)
+                pokemonList.showAllPokemon(pokemonList.recordsPerPage, pokemonList.currPage + 1);
         });
     }
 };
