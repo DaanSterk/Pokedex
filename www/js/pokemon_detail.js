@@ -1,4 +1,18 @@
 var pokemonDetail = {
+
+    pokeCoords: [
+        "51.688905, 5.283644?q=51.688905, 5.283644",
+        "51.691766, 5.282115?q=51.691766, 5.282115",
+        "51.651014, 5.125790?q=51.651014, 5.125790",
+        "51.695863, 5.297589?q=51.695863, 5.297589",
+        "51.692731, 5.279375?q=51.692731, 5.279375",
+        "51.701781, 5.277217?q=51.701781, 5.277217",
+        "51.722615, 5.298758?q=51.722615, 5.298758",
+        "51.724939, 5.277651?q=51.724939, 5.277651",
+        "51.706678, 5.287521?q=51.706678, 5.287521",
+        "51.688757, 5.285100?q=51.688757, 5.285100"
+    ],
+
     detailIsLoading: true,
 
     initialize: function(){
@@ -54,17 +68,26 @@ var pokemonDetail = {
                     list[0].appendChild(listItem);
                 }
 
-                var button = $("#b_mapview");
+                var bMap = $("#b_mapview");
+                var bCatch = $("#b_catch");
                 if (storage.ownThisPokemon(data)) {
-                    button.text("You own this pokemon");
-                    button.addClass("ui-disabled");
+                    bMap.text("You own this pokemon");
+                    bMap.addClass("ui-disabled");
+
+                    bCatch.unbind("tap");
+                    bCatch.hide();
                 }
                 else {
-                    button.text("View on map");
-                    button.removeClass("ui-disabled");
-                    button.unbind("tap");
-                    button.on("tap", function() {
+                    bMap.text("View on map");
+                    bMap.removeClass("ui-disabled");
+                    bMap.unbind("tap");
+                    bMap.on("tap", function() {
                         pokemonDetail.viewOnMap(data);
+                    });
+
+                    bCatch.show();
+                    bCatch.on("tap", function() {
+                        pokemonDetail.catchPokemon(name);
                     });
                 }
 
@@ -75,9 +98,23 @@ var pokemonDetail = {
         });
     },
 
+    catchPokemon: function(name) {
+        pokemonDetail.showCatchLoader(name);
+        currentLocation.catchPokemon(51.724939, 5.277651, name);
+    },
+
     showLoader: function() {
         $.mobile.loading("show", {
             text: "Loading pokemon",
+            textVisible: true,
+            theme: $.mobile.loader.prototype.options.theme,
+            textonly: false
+        });
+    },
+
+    showCatchLoader: function(name) {
+        $.mobile.loading("show", {
+            text: "You attempt to catch " + name + "...",
             textVisible: true,
             theme: $.mobile.loader.prototype.options.theme,
             textonly: false
@@ -90,20 +127,7 @@ var pokemonDetail = {
     },
 
     viewOnMap: function(pokemon) {
-
-        var pokeCoords = [
-            "51.688905, 5.283644?q=51.688905, 5.283644",
-            "51.691766, 5.282115?q=51.691766, 5.282115",
-            "51.651014, 5.125790?q=51.651014, 5.125790",
-            "51.695863, 5.297589?q=51.695863, 5.297589",
-            "51.692731, 5.279375?q=51.692731, 5.279375",
-            "51.701781, 5.277217?q=51.701781, 5.277217",
-            "51.722615, 5.298758?q=51.722615, 5.298758",
-            "51.724939, 5.277651?q=51.724939, 5.277651",
-            "51.706678, 5.287521?q=51.706678, 5.287521",
-            "51.688757, 5.285100?q=51.688757, 5.285100"
-        ];
-        window.open("geo:" + pokeCoords[pokemon.id - 1], '_system');
+        window.open("geo:" + pokemonDetail.pokeCoords[pokemon.id - 1], '_system');
     },
 
     addListeners: function () {
