@@ -13,6 +13,60 @@ var pokemonDetail = {
         "51.688757, 5.285100?q=51.688757, 5.285100"
     ],
 
+    pokeIndices: {
+        "bulbasaur": 0,
+        "ivysaur": 1,
+        "venusaur": 2,
+        "charmander": 3,
+        "charmeleon": 4,
+        "charizard": 5,
+        "squirtle": 6,
+        "wartortle": 7,
+        "blastoise": 8,
+        "caterpie": 9
+    },
+
+    nameToCoords: function(name) {
+        var index = this.pokeIndices[name];
+        if (!index) {
+            return null;
+        }
+        var coordString = this.pokeCoords[index];
+
+        var coord1 = "";
+        var i = 0;
+        var stop = false;
+        while (!stop) {
+            if (coordString.charAt(i) == '.') {
+                coord1 = coord1 + ',';
+            }
+            else if (coordString.charAt(i) == ' ') {
+                stop = true;
+            }
+            else {
+                coord1 = coord1 + coordString.charAt(i);
+            }
+            i++;
+        }
+
+        var coord2 = "";
+        stop = false;
+        while (!stop) {
+            if (coordString.charAt(i) == ".") {
+                coord2 = coord2 + ",";
+            }
+            else if (coordString.charAt(i) == "?") {
+                stop = true;
+            }
+            else {
+                coord2 = coord2 + coordString.charAt(i);
+            }
+            i++;
+        }
+
+        return {lat: parseInt(coord1), long: parseInt(coord2)}
+    },
+
     detailIsLoading: true,
 
     initialize: function(){
@@ -100,7 +154,10 @@ var pokemonDetail = {
 
     catchPokemon: function(name) {
         pokemonDetail.showCatchLoader(name);
-        currentLocation.catchPokemon(51.724939, 5.277651, name);
+        var coords = pokemonDetail.nameToCoords(name);
+        if (coords != null) {
+            currentLocation.catchPokemon(coords.lat, coords.long, name);
+        }
     },
 
     showLoader: function() {
@@ -127,7 +184,12 @@ var pokemonDetail = {
     },
 
     viewOnMap: function(pokemon) {
-        window.open("geo:" + pokemonDetail.pokeCoords[pokemon.id - 1], '_system');
+        if (pokemonDetail.pokeCoords[pokemon.id - 1]) {
+            window.open("geo:" + pokemonDetail.pokeCoords[pokemon.id - 1], '_system');
+        }
+        else {
+            alert("Pokemon does not have coordinates!");
+        }
     },
 
     addListeners: function () {

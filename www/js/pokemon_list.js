@@ -1,6 +1,6 @@
 // Only call functions that are not indented.
 var pokemonList = {
-	recordsPerPage: 1,
+	recordsPerPage: 10,
 
 	callbacks: null,
 	callbacksLeft: null,
@@ -17,7 +17,6 @@ var pokemonList = {
 	},
 
 	showAllPokemon: function (limit, page) {
-		localStorage.clear();
 
 		pokemonList.currPage = page;
 		pokemonList.callbacks = limit;

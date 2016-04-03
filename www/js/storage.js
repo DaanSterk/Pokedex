@@ -1,13 +1,11 @@
 var storage = {
 
-    store: localStorage,
-
     getMyPokemon: function() {
         var pokemonArray = new Array();
         var i = 0;
-        for (var item in localStorage) {
-            if(item && item != "debug") {
-                var parsedItem = JSON.parse(this.store.getItem(item));
+        for (var key in localStorage) {
+            if(key && key != "debug") {
+                var parsedItem = JSON.parse(localStorage.getItem(key));
                 if (parsedItem.name) {
                     pokemonArray[i] = parsedItem;
                     i++;
@@ -18,7 +16,7 @@ var storage = {
     },
 
     saveMyPokemon: function(pokemon) {
-        this.store.setItem(pokemon.name, JSON.stringify(pokemon));
+        localStorage.setItem(pokemon.name, JSON.stringify(pokemon));
     },
 
     ownThisPokemon: function(pokemon) {

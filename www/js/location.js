@@ -26,7 +26,6 @@ var currentLocation = {
         var latDiff = myLat - currentLocation.pokeLat;
         var longDiff = myLong - currentLocation.pokeLong;
 
-
         //alert("Me (lat, long)");
         //alert(myLat);
         //alert(myLong);
@@ -43,7 +42,7 @@ var currentLocation = {
             $.ajax({
                 url: "http://pokeapi.co/api/v2/pokemon/" + currentLocation.pokeName,
                 success: function (data) {
-                    storage.saveMyPokemon(JSON.parse(data));
+                    storage.saveMyPokemon(data);
                     alert("Pokemon successfully caught!");
                     pokemonDetail.hideLoader();
                     $("#b_mapview").text("You own this pokemon");
@@ -57,6 +56,7 @@ var currentLocation = {
         }
         else {
             alert("You are too far away from this Pokemon.");
+            pokemonDetail.hideLoader();
         }
     },
 

@@ -41,9 +41,8 @@ var currentDirection = {
                 currentDirection.showDirection, currentDirection.errorHandler, options);
         }
         else{
-            //TODO: Uncomment rule below when app goes live.
-            //alert("Sorry, the device does not support compass!");
-            console.log("Sorry, the device does not support compass!");
+            alert("Sorry, the device does not support compass!");
+            //console.log("Sorry, the device does not support compass!");
         }
     },
 
