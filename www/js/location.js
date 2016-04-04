@@ -5,7 +5,7 @@ var currentLocation = {
     pokeLong: 0,
     pokeName: null,
 
-    maxDiff: 0.1,
+    maxDiff: 1,
 
     initialize: function(){
         currentLocation.getLocationUpdate();
@@ -26,16 +26,7 @@ var currentLocation = {
         var latDiff = myLat - currentLocation.pokeLat;
         var longDiff = myLong - currentLocation.pokeLong;
 
-        //alert("Me (lat, long)");
-        //alert(myLat);
-        //alert(myLong);
-        //
-        //alert("Pokemon (lat, long)")
-        //alert(currentLocation.pokeLat);
-        //alert(currentLocation.pokeLong);
-        //
-        //alert(latDiff);
-        //alert(longDiff);
+
 
 
         if (latDiff > -currentLocation.maxDiff && latDiff < currentLocation.maxDiff && longDiff > -currentLocation.maxDiff && longDiff < currentLocation.maxDiff) {

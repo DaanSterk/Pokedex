@@ -28,7 +28,7 @@ var pokemonDetail = {
 
     nameToCoords: function(name) {
         var index = this.pokeIndices[name];
-        if (!index) {
+        if (index == undefined) {
             return null;
         }
         var coordString = this.pokeCoords[index];
